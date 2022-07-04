@@ -37,11 +37,9 @@ class XboxController(object):
 
 
     def read(self): # return the buttons/triggers that you care about in this methode
-        lx = self.LeftJoystickX
-        ly = self.LeftJoystickY
-        rx = self.RightJoystickX
-        ry = self.RightJoystickY
-        return [lx, ly, rx, ry]
+        lt = self.LeftTrigger
+        rt = self.RightTrigger
+        return [lt, rt]
 
 
     def _monitor_controller(self):
@@ -104,3 +102,7 @@ class XboxController(object):
                     self.home = event.state
     def close(self):
         print("done")
+        
+#joy = XboxController()
+#while True:
+#   print(joy.read())
