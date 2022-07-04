@@ -92,8 +92,10 @@ async def create_hid_server(protocol_factory, ctl_psm=17, itr_psm=19, device_id=
 
         # start advertising
         hid.discoverable()
+        print("Discoverable")
 
         logger.info('Waiting for Switch to connect... Please open the "Change Grip/Order" menu.')
+        print('Waiting for Switch to connect... Please open the "Change Grip/Order" menu.')
 
         loop = asyncio.get_event_loop()
         client_ctl, ctl_address = await loop.sock_accept(ctl_sock)
