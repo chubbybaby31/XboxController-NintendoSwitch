@@ -100,9 +100,12 @@ async def create_hid_server(protocol_factory, ctl_psm=17, itr_psm=19, device_id=
         loop = asyncio.get_event_loop()
         client_ctl, ctl_address = await loop.sock_accept(ctl_sock)
         logger.info(f'Accepted connection at psm {ctl_psm} from {ctl_address}')
+        print(f'Accepted connection at psm {ctl_psm} from {ctl_address}')
         client_itr, itr_address = await loop.sock_accept(itr_sock)
         logger.info(f'Accepted connection at psm {itr_psm} from {itr_address}')
+        print(f'Accepted connection at psm {itr_psm} from {itr_address}')
         assert ctl_address[0] == itr_address[0]
+        print('done')
 
         # stop advertising
         hid.discoverable(False)
