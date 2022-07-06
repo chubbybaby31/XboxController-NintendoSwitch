@@ -1,4 +1,3 @@
-import xbox
 import argparse
 import asyncio
 import logging
