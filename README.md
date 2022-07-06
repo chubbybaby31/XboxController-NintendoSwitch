@@ -29,6 +29,7 @@ To disable it we must edit ```/lib/systemd/system/bluetooth.service```
 sudo nano /lib/systemd/system/bluetooth.service
 ```
 Then change the line ```ExecStart=/usr/lib/bluetooth/bluetoothd``` to ```ExecStart=/usr/lib/bluetooth/bluetoothd```
+
 Now restart the bluetooth services
 ```
 sudo systemctl daemon-reload
