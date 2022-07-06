@@ -78,18 +78,13 @@ async def letItRain(controller_state: ControllerState):
 				await asyncio.sleep(0)
 
 				if j.UpDPad == 1:
-					print("pressed")
 					upStatus=True
 					button_state.set_button('up')
 					await controller_state.send()
-					print("done")
 				elif j.UpDPad == 0 and upStatus:
-					print("released")
 					upStatus=False
 					button_state.set_button('up', pushed=False)
 					await controller_state.send()
-					print("done")
-
 				if j.DownDPad == 1:
 					downStatus=True
 					button_state.set_button('down')
@@ -104,10 +99,9 @@ async def letItRain(controller_state: ControllerState):
 					button_state.set_button('left')
 					await controller_state.send()
 				elif j.LeftDPad == 0 and leftStatus:
-						leftStatus=False
-						button_state.set_button('left', pushed=False)
-						await controller_state.send()
-
+					leftStatus=False
+					button_state.set_button('left', pushed=False)
+					await controller_state.send()
 				if j.RightDPad == 1:
 					rightStatus=True
 					button_state.set_button('right')
@@ -116,7 +110,6 @@ async def letItRain(controller_state: ControllerState):
 					rightStatus=False
 					button_state.set_button('right', pushed=False)
 					await controller_state.send()
-
 				if j.home == 1:
 					waitTime = waitTime+1
 					homeStatus=True
@@ -169,30 +162,22 @@ async def letItRain(controller_state: ControllerState):
 					await controller_state.send()
 
 				if j.A == 1:
-					print("pressed")
 					bStatus=True
 					button_state.set_button('b')
 					await controller_state.send()
-					print("done")
 				elif j.A == 0 and bStatus:
-					print("released")
 					bStatus=False
 					button_state.set_button('b', pushed=False)
 					await controller_state.send()
-					print("done")
 
 				if j.B == 1:
-					print("pressed")
 					aStatus=True
 					button_state.set_button('a')
 					await controller_state.send()
-					print("done")
 				elif j.B == 0 and aStatus:
-					print("released")
 					aStatus=False
 					button_state.set_button('a', pushed=False)
 					await controller_state.send()
-					print("done")
 
 				if j.X == 1:
 					yStatus=True
@@ -250,14 +235,7 @@ async def letItRain(controller_state: ControllerState):
 
 
 	finally:
-		print("?")
 		j.close()
-
-print("\t\t    +------------------+")
-print("\t\t    |   SwitchX v1.0   |")
-print("\t\t    +------------------+")
-print("\t\t    (c) Aodrulez\n")
-print("( Adds support for XBOX360 controllers to Nintendo Switch )\n")
 with open("controller.bin", 'rb') as spi_flash_file:
 		spi_flash = spi_flash_file.read()
 
