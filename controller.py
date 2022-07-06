@@ -36,7 +36,7 @@ class XboxController(object):
         self._monitor_thread.start()
 
 
-    def read(self): # return the buttons/triggers that you care about in this methode
+    def read(self): # return the buttons/triggers that you care about in this method
         ly = self.LeftJoystickY
         ry = self.RightJoystickY
         lx = self.LeftJoystickX
@@ -49,13 +49,21 @@ class XboxController(object):
             events = get_gamepad()
             for event in events:
                 if event.code == 'ABS_Y':
-                    self.LeftJoystickY = event.state / XboxController.MAX_JOY_VAL # normalize between -1 and 1
+                    rawLY = (event.state * -1) + 32769
+                    ly = (((rawLY - 1) * (0xfff - 0)) / (65536 - 1)) + 0
+                    self.LeftJoystickY = ly
                 elif event.code == 'ABS_X':
-                    self.LeftJoystickX = event.state / XboxController.MAX_JOY_VAL # normalize between -1 and 1
+                    rawLX = event.state  + 32769
+                    lx = (((rawLX - 1) * (0xfff - 0)) / (65536 - 1)) + 0
+                    self.LeftJoystickX = lx
                 elif event.code == 'ABS_RY':
-                    self.RightJoystickY = event.state / XboxController.MAX_JOY_VAL # normalize between -1 and 1
+                    rawRY = (event.state * -1) + 32769
+                    ry = (((rawRY - 1) * (0xfff - 0)) / (65536 - 1)) + 0
+                    self.RightJoystickY = ry
                 elif event.code == 'ABS_RX':
-                    self.RightJoystickX = event.state / XboxController.MAX_JOY_VAL # normalize between -1 and 1
+                    rawRX = event.state + 32769
+                    rx = (((rawRX - 1) * (0xfff - 0)) / (65536 - 1)) + 0
+                    self.RightJoystickX = rx
                 elif event.code == 'ABS_Z':
                     if event.state / XboxController.MAX_TRIG_VAL > 0.5:
                         self.LeftTrigger = 1 # normalize between 0 and 1
