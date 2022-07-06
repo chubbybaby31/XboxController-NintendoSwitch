@@ -23,6 +23,11 @@ Install the required dependencies and setup auto-run on boot
 cd XboxController-NintendoSwitch
 sudo python3 setup.py
 ```
+Install the dbus-python and libhidapi-hidraw0 packages
+```
+sudo apt install python3-dbus libhidapi-hidraw0
+```
+
 The Switch can not connect to the ports of the emulated controller, if the "input" plugin in Bluez is enabled.
 To disable it we must edit ```/lib/systemd/system/bluetooth.service```
 ```
