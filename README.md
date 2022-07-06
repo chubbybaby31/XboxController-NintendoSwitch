@@ -23,6 +23,17 @@ Install the required dependencies and setup auto-run on boot
 cd XboxController-NintendoSwitch
 sudo python3 setup.py
 ```
+The Switch can not connect to the ports of the emulated controller, if the "input" plugin in Bluez is enabled.
+To disable it we must edit ```/lib/systemd/system/bluetooth.service```
+```
+sudo nano /lib/systemd/system/bluetooth.service
+```
+Then change the line ```ExecStart=/usr/lib/bluetooth/bluetoothd``` to ```ExecStart=/usr/lib/bluetooth/bluetoothd```
+Now restart the bluetooth services
+```
+sudo systemctl daemon-reload
+sudo systemctl restart bluetooth
+```
 
 ### Usage
 Once installed, reboot your Raspberry Pi and connect your Controller to the Pi via USB
